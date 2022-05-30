@@ -1,0 +1,10 @@
+asgiref @ file:///tmp/build/80754af9/asgiref_1625643473416/work
+certifi==2022.5.18.1
+Django @ file:///tmp/build/80754af9/django_1625585912945/work
+django-crispy-forms==1.14.0
+django-registration-redux==2.10
+Pillow==9.1.1
+psycopg2 @ file:///Users/builder/ci_310/psycopg2_1642535040511/work
+pytz==2021.3
+sqlparse @ file:///tmp/build/80754af9/sqlparse_1602184451250/work
+typing_extensions @ file:///opt/conda/conda-bld/typing_extensions_1647553014482/work
