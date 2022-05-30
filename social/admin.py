@@ -2,7 +2,6 @@
 from django.contrib import admin
 from social.models import  MyPost, Follower, MyProfile
 from django.contrib.admin.options import ModelAdmin
-from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth import get_user_model
 
 # Register your models here.
