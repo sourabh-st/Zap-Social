@@ -59,13 +59,16 @@ class Signup(View):
         password = postData.get('password')
         address = postData.get('address') or ""
         age = postData.get('age') or ""
+        status = postData.get('status') or ""
+        gender = postData.get('gender') or ""
+        profilepic = postData.get('profilepic')
         try:
 
             user = User.objects.create_user(phone, email , password)
 
             user.first_name = first_name
             user.save()
-            MyProfile.objects.create(user=user,age=age , address = address)
+            MyProfile.objects.create(user=user,profilename=first_name, age=age , address = address,status=status,gender=gender,profilepic=profilepic)
 
         except Exception as e:
             return JsonResponse({"error":str(e)})
@@ -95,23 +98,6 @@ def profile_get(request):
             "profilepic":profile_object.profilepic
     }
     return render(request,'social/myprofile.html',context)
-
-
-# @login_required
-# def profile_edit(request):
-#     if request.method == 'POST':
-#         age = request.POST.get('age')
-#         profile_pic = request.FILES.get('profilepic')
-#         address = request.POST.get('address')
-#         status = request.POST.get('status')
-#         gender = request.POST.get('gender')
-#         description = request.POST.get('description')
-#         post = Post.objects.get(id=post_id)
-    
-#     context = {
-
-#     }
-#     return render(request, 'social/myprofile_edit.html', context)
 
 
 ################################################################################
@@ -170,8 +156,9 @@ class MyPostDeleteView(DeleteView):
 def feed_view(request):
     followings = Follower.objects.filter(followers=request.user).values_list('user', flat=True)
     post = MyPost.objects.filter(uploaded_by__in=followings).order_by("-id")
+    
     context = {
-        "posts":post
+        "posts":post,
     }
     return render(request,"social/feeds.html" ,context)
 

@@ -28,12 +28,13 @@ class Follower(models.Model):
 
 class MyProfile(models.Model):
     user = models.OneToOneField(django_user, on_delete=models.CASCADE)
+    profilename = models.CharField(max_length=20,null=True,blank=True) 
     age = models.IntegerField(default=12,validators=[MinValueValidator(12)])
     address = models.TextField( max_length=200, null=True, blank=True)
-    status = models.CharField(max_length=20,choices=(("single","single"),("Commited","Commited"),("Married","Married")),null=True,blank=True)
-    gender = models.CharField(max_length=20,choices=(("Male","Male"),("Female","Female"),("others","others")),null=True,blank=True)
+    status = models.CharField(max_length=20,null=True,blank=True)
+    gender = models.CharField(max_length=20,null=True,blank=True)
     description = models.TextField(null=True,blank=True)
-    profilepic = models.ImageField(upload_to = "images",null=True)
+    profilepic = models.ImageField(upload_to = "images",null=True, blank=True)
     
 
 

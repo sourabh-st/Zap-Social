@@ -1,10 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<form>
+  <div class="row justify-content-start">
+    <div class="col-3">
+      <input value="{{ request.GET.si }}" class="form-control col-2" type="search" placeholder="Search" aria-label="Search" name="si"> 
+    </div>
+    <div class="col-2">
+      <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" value="Search">Search</button> 
+    </div>
+    <div class="col-2">
+      <a href="/social/mypost/create" class="btn btn-success">New Post</a>
+    </div>
+  </div>
+</form>
   {% for p in posts %}
-    <p>{{p.subject}}</p>
+    <div class="card ml-4 mt-2" style="width: 30%; margin-left: 100px; ">
+      <p class="text-secondary " style="margin-left: 30px; margin-top: 10px;">~{{ p.uploaded_by }}</p>
+      <img class="card-img-top mx-auto pt-3" src="/media/{{p.pic}}" alt="Card image cap" style="width: 80%;">
+      <div class="card-body">
+        <h5 class="card-title alin text-center">{{ p.subject }}</h5>
+        <p class="text-secondary mx-auto text-center">{{ p.cr_date }}</p>
+        </div>
+        </div>
 
   {% endfor %}
 
 {% endblock %}
+  
