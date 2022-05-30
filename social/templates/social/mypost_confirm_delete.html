@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container">
+    <div class="p-4 m-4">
+        <div class="col-lg-5 mx-auto border rounded pt-4">
+            <main class="p-5">
+            <div class="row text-justify">
+                <div class="col">
+                    <h1 class="myhead2" style= "text-align: center;" >Sure?</h1>
+                    <hr>
+
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col">
+            <a href="/social/mypost/"><button class="btn btn-info">Cancel</button></a>
+                </div>
+                <div class="col">
+            <form enctype="multipart/form-data" method="POST" style="text-align: center;">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <input class="btn btn-danger" type="submit" value="Delete">
+                </div>
+            </form>
+            </div>
+            </main>
+        </div>
+    </div>
+</div>    
+{% endblock %}

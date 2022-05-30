@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Connections</h1>
+
+<hr>
+
+<table class="table">
+      <tr>
+        <th scope="col"><div class="card text-center shadow p-3 mb-5 bg-body rounded" style="width: 12rem;">
+            <div class="card-body">
+             <h2 class="badge bg-primary text-wrap" style="width: 8rem;">Followers</h2>
+            {% for follower in followers %}
+              <p class="card-title list-unstyled"><li>{{ follower.first_name }}</li></p>
+            {% endfor %}
+            </div>
+        </div></th>
+
+        <th scope="col"><div class="card text-center shadow p-3 mb-5 bg-body rounded" style="width: 12rem;">
+            <div class="card-body">
+             <h4 class="badge bg-primary text-wrap" style="width: 8rem;">Followings</h2>
+            {% for following in my_followings %}
+              <p class="card-title list-unstyled"><li>{{ following.first_name }}</li></p>
+            {% endfor %}
+            </div>
+        </div></th>
+
+        <th scope="col"><div class="card text-center shadow p-3 mb-5 bg-body rounded" style="width: 15rem;">
+            <div class="card-body">
+                <h4 class="badge bg-primary text-wrap" style="width: 8rem;">Suggestions</h4>
+            {% for suggestion in suggestions %}
+              <h5 class="card-title">{{ suggestion.first_name }}</h5>
+              <a  href="{% url 'follow' username=suggestion.username %}"> <button class="btn btn-success btn-sm" >Follow</button></a>
+            {% endfor %}
+            </div>
+          </div></th>
+      </tr>
+  </table>
+
+{% endblock %}

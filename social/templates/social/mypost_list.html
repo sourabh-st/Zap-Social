@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br><br>
+
+    <div class="container">
+        <form>
+        <div class="row justify-content-start">
+          <div class="col-3">
+            <input value="{{ request.GET.si }}" class="form-control col-2" type="search" placeholder="Search" aria-label="Search" name="si"> 
+          </div>
+          <div class="col-2">
+            <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" value="Search">Search</button> 
+          </div>
+          <div class="col-2">
+            <a href="/social/mypost/create" class="btn btn-success">New Post</a>
+          </div>
+        </div>
+</form>
+</div>
+<br><br>
+<div class="container">
+{% for n1 in mypost_list %}
+
+<div class="card ml-4 mt-2" style="width: 30%; margin-left: 100px; ">
+    <img class="card-img-top mx-auto pt-3" src="/media/{{n1.pic}}" alt="Card image cap" style="width: 80%;">
+    <div class="card-body">
+      <h5 class="card-title alin text-center">{{ n1.subject }}</h5>
+      <p class="text-secondary mx-auto text-center">{{ n1.cr_date }}</p>
+      <a href="/social/mypost/delete/{{n1.id}}" class="btn btn-danger btn-sm">Delete</a>
+      
+    </div>
+  </div>
+{% endfor %}
+</div>
+{% endblock %}

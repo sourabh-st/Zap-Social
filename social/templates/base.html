@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}Zap Social{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    
+    <link rel="shortcut icon" href="{% static 'social/Images/favicon.ico' %}">
+    <link href="{% static 'styles.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- The sidebar -->
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-info" style="position: fixed;">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <span class="fs-5 d-none d-sm-inline">Menu</span>
+                </a>
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <li class="nav-item">
+                       
+                    </li>
+                        {% if user.is_authenticated %}
+                        <a href="/social/home" class="nav-link align-middle px-0 text-white">
+                            <i class='fas fa-home' style='font-size:36px'></i> <span class="ms-1 d-none d-sm-inline">Profile</span>
+                        </a>
+                        <a href="/social/mypost" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline text-white">My Posts</span></a>
+                        <a href="/social/feeds" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline text-white">Feeds</span></a>
+                        <a href="/social/connections" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline text-white">My Connections</span></a>    
+                        {% endif %}
+
+                </ul>
+                <hr>
+                <div class="dropdown pb-4">
+                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{% static 'social/Images/programmer.png' %}" alt="hugenerd" width="50" height="50" class="rounded-circle">
+                        <span class="d-none d-sm-inline mx-1">{{user.first_name}}</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            {% if user.is_superuser %}
+                                <a class="dropdown-item" href="/admin">Admin</a>
+                            {% else %}
+                                {% if user.is_authenticated %}
+                                {% endif %}
+                            {% endif %}
+                        </li>
+                        <li>
+                            {% if user.is_authenticated %}
+                                <a class="dropdown-item" href="/social/logout">Sign out</a>
+                            {% else %}
+                                <a class="dropdown-item" href="/social/login">Login</a>
+                            {% endif %}
+                        </li>
+                       
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="col py-3" style="margin-left: 300px;">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+</body>
+</html>
