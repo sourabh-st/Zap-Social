@@ -61,14 +61,13 @@ class Signup(View):
         age = postData.get('age') or ""
         status = postData.get('status') or ""
         gender = postData.get('gender') or ""
-        profilepic = postData.get('profilepic')
         try:
 
             user = User.objects.create_user(phone, email , password)
 
             user.first_name = first_name
             user.save()
-            MyProfile.objects.create(user=user,profilename=first_name, age=age , address = address,status=status,gender=gender,profilepic=profilepic)
+            MyProfile.objects.create(user=user,profilename=first_name, age=age , address = address,status=status,gender=gender)
 
         except Exception as e:
             return JsonResponse({"error":str(e)})
